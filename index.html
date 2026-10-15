@@ -496,45 +496,47 @@ footer { padding-bottom:8rem; }
  .s-det { display:block !important; }
  .card, .acc, .s-card { break-inside:avoid; box-shadow:none; }
 }
+.cust-panel { width:min(350px, calc(100vw - 1.3rem)); max-height:calc(100vh - 7rem); overflow-y:auto; }
+.cust-panel .cp-note { font-size:.79rem; color:#475569; line-height:1.5; margin-top:.4rem; }
+.cust-panel .cp-lbl { font-size:.73rem; color:var(--navy); }
+.cust-panel .cp-chip { min-width:0; font-size:.75rem; padding:.5rem .25rem; }
+.cp-close { margin-top:1rem; width:100%; padding:.55rem; background:var(--paper2); border:1px solid var(--line); border-radius:9px; font:600 .82rem var(--ff-body); cursor:pointer; color:var(--navy); }
 </style>
 </head>
 <body class="">
 
-<!-- EDIT TOOLBAR -->
+<!-- VISITOR DISPLAY PREFERENCES -->
 <div class="edit-bar">
-  <button class="ebtn eb-cust" id="ecust" onclick="toggleCustomize()">Aa Customise</button>
-  <button class="ebtn eb-edit" id="etog" onclick="toggleEdit()">✏ Edit Page</button>
-  <button class="ebtn eb-img" id="eaimg" onclick="addImgSlot()" style="display: none;">＋ Insert Image</button>
-  <button class="ebtn eb-save" id="esave" onclick="saveHTML()">↓ Save HTML</button>
+  <button class="ebtn eb-cust" id="ecust" type="button" onclick="toggleCustomize()" aria-controls="customizePanel" aria-expanded="false">⚙ Display settings</button>
 </div>
-<div class="cust-panel" id="customizePanel">
-  <h4>Customise look</h4>
-  <div class="cp-note">Changes apply instantly. Save HTML downloads a copy with your changes.</div>
-  <div class="cp-lbl">Colour theme</div>
+<div class="cust-panel" id="customizePanel" role="region" aria-label="Display settings">
+  <h4>Make this site easier to read</h4>
+  <div class="cp-note">Choose the colours, font, and text size that work best for you. Changes appear immediately and reset when you reload the page.</div>
+  <div class="cp-lbl">1. Colour theme</div>
   <div class="cp-row">
-    <button class="cp-chip on" data-theme="blue" onclick="setTheme('blue',this)"><span class="cp-sw" style="background:#1f6fb2"></span>Blue</button>
-    <button class="cp-chip" data-theme="warm" onclick="setTheme('warm',this)"><span class="cp-sw" style="background:#e9692c"></span>Warm</button>
+    <button class="cp-chip on" type="button" data-theme="blue" onclick="setTheme('blue',this)"><span class="cp-sw" style="background:#1f6fb2"></span>Blue</button>
+    <button class="cp-chip" type="button" data-theme="warm" onclick="setTheme('warm',this)"><span class="cp-sw" style="background:#e9692c"></span>Warm</button>
   </div>
   <div class="cp-row" style="margin-top:.4rem;">
-    <button class="cp-chip" data-theme="forest" onclick="setTheme('forest',this)"><span class="cp-sw" style="background:#2e7d52"></span>Forest</button>
-    <button class="cp-chip" data-theme="slate" onclick="setTheme('slate',this)"><span class="cp-sw" style="background:#4a6b8a"></span>Slate</button>
+    <button class="cp-chip" type="button" data-theme="forest" onclick="setTheme('forest',this)"><span class="cp-sw" style="background:#2e7d52"></span>Green</button>
+    <button class="cp-chip" type="button" data-theme="slate" onclick="setTheme('slate',this)"><span class="cp-sw" style="background:#4a6b8a"></span>Grey</button>
   </div>
-  <div class="cp-lbl">Font</div>
-  <select id="cpFont" onchange="setFont(this.value)" aria-label="Font family">
-    <option value="elegant" selected="">Elegant — Fraunces</option>
-    <option value="classic">Classic serif — Lora</option>
+  <div class="cp-lbl">2. Font style</div>
+  <select id="cpFont" onchange="setFont(this.value)" aria-label="Choose font style">
+    <option value="elegant" selected>Default — Fraunces headings</option>
+    <option value="classic">Serif — Lora</option>
     <option value="traditional">Traditional — Georgia</option>
-    <option value="clean">Clean sans — Roboto</option>
+    <option value="clean">Simple — Roboto</option>
   </select>
-  <div class="cp-lbl">Text size</div>
+  <div class="cp-lbl">3. Text size</div>
   <div class="cp-row">
-    <button class="cp-chip" onclick="setSize(15,this)">S</button>
-    <button class="cp-chip on" onclick="setSize(16,this)">M</button>
-    <button class="cp-chip" onclick="setSize(17.5,this)">L</button>
-    <button class="cp-chip" onclick="setSize(19,this)">XL</button>
+    <button class="cp-chip" type="button" onclick="setSize(15,this)" aria-label="Small text">Small</button>
+    <button class="cp-chip on" type="button" onclick="setSize(16,this)" aria-label="Medium text">Medium</button>
+    <button class="cp-chip" type="button" onclick="setSize(17.5,this)" aria-label="Large text">Large</button>
+    <button class="cp-chip" type="button" onclick="setSize(19,this)" aria-label="Extra large text">XL</button>
   </div>
+  <button class="cp-close" type="button" onclick="toggleCustomize()">Close settings</button>
 </div>
-<div class="edit-hint">✏ Edit static text and scenario guidance; Save HTML keeps changes</div>
 
 <!-- NAV -->
 <nav>
@@ -1404,7 +1406,7 @@ footer { padding-bottom:8rem; }
 
 <!-- ════════════════════ TEMPLATES ════════════════════ -->
 <div class="page" id="templates">
-  <div class="phdr"><div class="wrap"><div class="bc">Templates</div><h2 tabindex="-1">Editable templates for teachers and students</h2><p>Fill in the fields for your context, then use Copy to export the completed text. Save HTML downloads a copy with your entries; changes are not saved automatically. Edit Page changes headings and instructional text.</p></div></div>
+  <div class="phdr"><div class="wrap"><div class="bc">Templates</div><h2 tabindex="-1">Editable templates for teachers and students</h2><p>Fill in the fields for your context, then select Copy to use your completed text elsewhere. Entries are not saved automatically.</p></div></div>
   <div class="section"><div class="wrap">
     <div class="tmpl">
       <h4>Template 1: Assignment AI-Use Statement <button class="copy-btn" onclick="copyTmpl('t1')">⎘ Copy</button></h4>
@@ -1590,7 +1592,7 @@ footer { padding-bottom:8rem; }
 
 <script>
 // ── NAV ──────────────────────────────────────────────────────
-let editOn = false;
+
 const pageMap = { home:'nh', why:'nw', clear:'nc', curriculum:'ncu', students:'nst', infolit:'ni', noodle:'nn', tracking:'ntr', scenarios:'nsc', checklist:'nck', coursework:'nco', templates:'nt', reflection:'nr', sources:'nso', toolkit:'ntk' };
 
 function go(id, updateHash = true) {
@@ -1888,16 +1890,7 @@ const SS = [
 const bm = {ok:'b-ok',no:'b-no',warn:'b-warn',ctx:'b-ctx'};
 const im = {ok:'✓',no:'✗',warn:'⚠',ctx:'◐'};
 function esc(value) { return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function syncScenarios(){
-  if(!editOn)return;
-  document.querySelectorAll('#sGrid .s-card').forEach(card=>{
-    const s=SS.find(x=>x.id===Number(card.dataset.id));if(!s)return;
-    s.t=card.querySelector('h4').textContent;s.w=card.querySelector('.s-body > p').textContent;
-    const d=card.querySelector('.s-det');const ps=d.querySelectorAll('p'),uls=d.querySelectorAll('ul');
-    s.why=ps[0].textContent;s.doc=ps[1].textContent;
-    s.ask=[...uls[0].querySelectorAll('li')].map(e=>e.textContent);s.ev=[...uls[1].querySelectorAll('li')].map(e=>e.textContent);
-  });
-}
+function syncScenarios(){ /* Scenario content remains read-only on the public site. */ }
 function renderS(f) {
   const list = f==='all' ? SS : SS.filter(s=>s.j===f);
   document.getElementById('sGrid').innerHTML = list.map(s=>`
@@ -1928,7 +1921,7 @@ function filterS(f, btn) {
   document.querySelectorAll('.fp').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderS(f);
-  if(editOn)applyEditState();
+
 }
 renderS('all');
 
@@ -2130,80 +2123,8 @@ const FONTS = {
 };
 function setFont(v){ const r=document.documentElement.style; r.setProperty('--ff-display',FONTS[v][0]); r.setProperty('--ff-body',FONTS[v][1]); }
 function setSize(px,btn){ document.documentElement.style.fontSize=px+'px'; if(btn){ btn.parentElement.querySelectorAll('.cp-chip').forEach(c=>c.classList.toggle('on',c===btn)); } }
-function toggleCustomize(){ document.getElementById('customizePanel').classList.toggle('open'); }
+function toggleCustomize(){ const panel=document.getElementById('customizePanel'); const isOpen=panel.classList.toggle('open'); document.getElementById('ecust').setAttribute('aria-expanded',String(isOpen)); }
 
-// ── EDIT MODE ─────────────────────────────────────────────────
-const editables = 'h1,h2,h3,h4,h5,p,li,span.hstep,span.fstep,span.nstep,.iline,.sd,.sw,.smv,.tc-step,.tc-how-lbl,.hero-tag,.hero-tagline,.bb-title,.bb-desc,.s-label';
-function applyEditState(){
-  document.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
-  if(editOn) document.querySelectorAll(editables).forEach(el=>{
-    if(!el.closest('button,input,textarea,script,nav,.edit-bar,.qwrap,.viva,#clArea,#customizePanel'))el.setAttribute('contenteditable','true');
-  });
-}
-function toggleEdit(){
-  if(editOn)syncScenarios();
-  editOn=!editOn;document.body.classList.toggle('em',editOn);
-  const tog=document.getElementById('etog');tog.textContent=editOn?'✓ Done Editing':'✏ Edit Page';tog.classList.toggle('on',editOn);
-  document.getElementById('eaimg').style.display=editOn?'block':'none';
-  applyEditState();
-}
-
-
-function uploadImg(slot) {
-  if (!editOn) { alert('Click "Edit Page" first, then click an image slot.'); return; }
-  const inp = document.createElement('input'); inp.type='file'; inp.accept='image/*';
-  inp.onchange = e => {
-    const f = e.target.files[0]; if (!f) return;
-    const r = new FileReader();
-    r.onload = ev => {
-      const img = document.createElement('img');
-      img.src = ev.target.result;
-      img.style.cssText='max-width:100%;border-radius:12px;border:3px solid #0e0e12;margin:1rem 0;';
-      img.title='Click in edit mode to replace';
-      img.setAttribute('onclick','if(editOn) uploadImg(this)');
-      img.alt=f.name.replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ');
-      img.setAttribute('role','button');img.tabIndex=0;
-      img.setAttribute('onkeydown',"if(editOn&&(event.key==='Enter'||event.key===' ')){event.preventDefault();uploadImg(this)}");
-      slot.replaceWith(img);
-    };
-    r.readAsDataURL(f);
-  };
-  inp.click();
-}
-function addImgSlot() {
-  const slot = document.createElement('div');
-  slot.className='img-slot';
-  slot.innerHTML='<div class="ii" style="font-family:var(--ff-display);font-weight:900;font-size:1.4rem;opacity:.4;">IMG</div><span>Click to upload an image</span>';
-  slot.setAttribute('onclick','uploadImg(this)');slot.tabIndex=0;slot.setAttribute('role','button');slot.setAttribute('onkeydown',"if(event.key==='Enter'||event.key===' '){event.preventDefault();uploadImg(this)}");
-  const ap = document.querySelector('.page.active');
-  if (ap) {
-    const last = ap.querySelector('.section:last-of-type .wrap, .section:last-of-type .wrap-n');
-    if (last) last.appendChild(slot);
-  }
-}
-function saveHTML(){
- syncScenarios();
- const clone=document.documentElement.cloneNode(true);
- const originalFields=document.querySelectorAll('input,textarea,select');
- const clonedFields=clone.querySelectorAll('input,textarea,select');
- originalFields.forEach((field,i)=>{
-   const copy=clonedFields[i];
-   if(field.tagName==='TEXTAREA')copy.textContent=field.value;
-   else if(field.tagName==='SELECT') [...copy.options].forEach((option,j)=>option.toggleAttribute('selected',field.options[j].selected));
-   else {copy.setAttribute('value',field.value);copy.toggleAttribute('checked',field.checked);}
- });
- clone.querySelector('body').classList.remove('em');
- clone.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
- const edit=clone.querySelector('#etog');edit.textContent='✏ Edit Page';edit.classList.remove('on');
- clone.querySelector('#eaimg').style.display='none';clone.querySelector('#customizePanel').classList.remove('open');
- clone.querySelector('#quizCard').innerHTML=quizMarkup;
- clone.querySelectorAll('.fp').forEach((b,i)=>b.classList.toggle('active',i===0));
- const script=[...clone.querySelectorAll('script')].find(s=>s.textContent.includes('const SS ='));
- const data=JSON.stringify(SS,null,2).replace(/</g,'\\u003c');
- script.textContent=script.textContent.replace(/const SS = \[[\s\S]*?\n\];/,()=> 'const SS = '+data+';');
- const blob=new Blob(['<!DOCTYPE html>\n'+clone.outerHTML],{type:'text/html'});
- const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='clear-ai-integrity.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
 // Associate fields with their visible labels and expose component state.
 document.querySelectorAll('label.fl').forEach((label,i)=>{const field=label.parentElement.querySelector('input,textarea');if(field){if(!field.id)field.id='field-'+i;label.htmlFor=field.id;}});
 document.querySelector('#cpFont').setAttribute('aria-label','Font family');
